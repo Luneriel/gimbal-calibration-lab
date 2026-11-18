@@ -1,0 +1,212 @@
+{
+  "kind": "gimbal_lab.scene",
+  "schema_version": 2,
+  "conventions": {
+    "length_unit": "mm",
+    "angle_unit": "deg",
+    "handedness": "right",
+    "vectors": "column",
+    "transform": "T_A_B maps B to A",
+    "euler": "Rz(yaw) @ Ry(pitch) @ Rx(roll)",
+    "quaternion": "Hamilton wxyz, I to A",
+    "world_axes": "X_forward,Y_left,Z_up",
+    "camera_axes": "X_right,Y_down,Z_forward",
+    "board_corner_order": "row_major,column_fastest",
+    "imu_reference": "R_A_W; A and W share origin",
+    "frames": {
+      "W": "world",
+      "B": "base",
+      "Y": "yaw",
+      "P": "pitch",
+      "C": "camera",
+      "I": "imu",
+      "A": "absolute_reference",
+      "T": "board",
+      "G": "gimbal"
+    }
+  },
+  "scene": {
+    "preset": "自定义场景",
+    "base": {
+      "position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "euler_zyx_deg": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "yaw": {
+      "installation": {
+        "position_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "euler_zyx_deg": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angle_deg": 0.0,
+      "limits_deg": [
+        -90.0,
+        90.0
+      ],
+      "child_zero": {
+        "position_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "euler_zyx_deg": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "parent": "base",
+      "child": "yaw"
+    },
+    "pitch": {
+      "installation": {
+        "position_mm": [
+          100,
+          0,
+          0
+        ],
+        "euler_zyx_deg": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "angle_deg": 0.0,
+      "limits_deg": [
+        -90,
+        90
+      ],
+      "child_zero": {
+        "position_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "euler_zyx_deg": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "parent": "yaw",
+      "child": "pitch"
+    },
+    "camera": {
+      "parent": "pitch",
+      "installation": {
+        "position_mm": [
+          50,
+          0,
+          0
+        ],
+        "euler_zyx_deg": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "width": 1280,
+      "height": 960,
+      "fx": 950.0,
+      "fy": 950.0,
+      "cx": 640.0,
+      "cy": 480.0,
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "imu": {
+      "parent": "pitch",
+      "installation": {
+        "position_mm": [
+          0.0,
+          0.0,
+          62.0
+        ],
+        "euler_zyx_deg": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "reference_rotation_aw": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "board": {
+      "kind": "chessboard",
+      "columns": 11,
+      "rows": 8,
+      "spacing_mm": 40.0,
+      "installation": {
+        "position_mm": [
+          1000.0,
+          200.0,
+          355.0
+        ],
+        "euler_zyx_deg": [
+          -90.0,
+          0.0,
+          -90.0
+        ]
+      }
+    },
+    "gimbal": {
+      "parent": "pitch",
+      "installation": {
+        "position_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "euler_zyx_deg": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  }
+}

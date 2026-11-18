@@ -1,0 +1,237 @@
+{
+  "name": "轴心偏移与参考系",
+  "scene": {
+    "preset": "自定义场景",
+    "base": {
+      "position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "euler_zyx_deg": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "yaw": {
+      "installation": {
+        "position_mm": [
+          0.0,
+          0.0,
+          90.0
+        ],
+        "euler_zyx_deg": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angle_deg": 25,
+      "limits_deg": [
+        -90.0,
+        90.0
+      ],
+      "child_zero": {
+        "position_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "euler_zyx_deg": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "parent": "base",
+      "child": "yaw"
+    },
+    "pitch": {
+      "installation": {
+        "position_mm": [
+          100,
+          20,
+          125
+        ],
+        "euler_zyx_deg": [
+          0,
+          0,
+          8
+        ]
+      },
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "angle_deg": -15,
+      "limits_deg": [
+        -60.0,
+        60.0
+      ],
+      "child_zero": {
+        "position_mm": [
+          15,
+          0,
+          0
+        ],
+        "euler_zyx_deg": [
+          0,
+          3,
+          0
+        ]
+      },
+      "parent": "yaw",
+      "child": "pitch"
+    },
+    "camera": {
+      "parent": "pitch",
+      "installation": {
+        "position_mm": [
+          80.0,
+          0.0,
+          0.0
+        ],
+        "euler_zyx_deg": [
+          -90.0,
+          0.0,
+          -90.0
+        ]
+      },
+      "width": 1280,
+      "height": 960,
+      "fx": 950.0,
+      "fy": 950.0,
+      "cx": 640.0,
+      "cy": 480.0,
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "imu": {
+      "parent": "pitch",
+      "installation": {
+        "position_mm": [
+          0.0,
+          0.0,
+          62.0
+        ],
+        "euler_zyx_deg": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "reference_rotation_aw": [
+        [
+          0.8925389352890299,
+          -0.43472652877262463,
+          -0.11994621367275018
+        ],
+        [
+          0.4161977407267834,
+          0.8964629232921237,
+          -0.15209756006084058
+        ],
+        [
+          0.17364817766693033,
+          0.08583165117743129,
+          0.9810602621904069
+        ]
+      ]
+    },
+    "board": {
+      "kind": "chessboard",
+      "columns": 11,
+      "rows": 8,
+      "spacing_mm": 40.0,
+      "installation": {
+        "position_mm": [
+          1000.0,
+          200.0,
+          355.0
+        ],
+        "euler_zyx_deg": [
+          -90.0,
+          0.0,
+          -90.0
+        ]
+      }
+    },
+    "gimbal": {
+      "parent": "pitch",
+      "installation": {
+        "position_mm": [
+          10,
+          -5,
+          8
+        ],
+        "euler_zyx_deg": [
+          5,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "sampling": {
+    "mode": "自动采样",
+    "count": 30,
+    "yaw_range_deg": [
+      -30.0,
+      30.0
+    ],
+    "pitch_range_deg": [
+      -15.0,
+      15.0
+    ],
+    "distribution": "分层均匀",
+    "seed": 42,
+    "strict": false,
+    "output_dir": ""
+  },
+  "calibration": {
+    "entry_kind": "",
+    "entry_path": "",
+    "pictures_dir": "",
+    "quaternion_dir": "",
+    "output_yaml": "",
+    "config_file": "",
+    "preset_path": ""
+  },
+  "format_version": 2,
+  "conventions": {
+    "length_unit": "mm",
+    "angle_unit": "deg",
+    "handedness": "right",
+    "vectors": "column",
+    "transform": "T_A_B maps B to A",
+    "euler": "Rz(yaw) @ Ry(pitch) @ Rx(roll)",
+    "quaternion": "Hamilton wxyz, I to A",
+    "world_axes": "X_forward,Y_left,Z_up",
+    "camera_axes": "X_right,Y_down,Z_forward",
+    "board_corner_order": "row_major,column_fastest",
+    "imu_reference": "R_A_W; A and W share origin",
+    "frames": {
+      "W": "world",
+      "B": "base",
+      "Y": "yaw",
+      "P": "pitch",
+      "C": "camera",
+      "I": "imu",
+      "A": "absolute_reference",
+      "T": "board",
+      "G": "gimbal"
+    }
+  }
+}
